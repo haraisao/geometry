@@ -346,8 +346,11 @@ public:
 		TFSIMD_FORCE_INLINE	void	serializeDouble(struct	Vector3DoubleData& dataOut) const;
 
 		TFSIMD_FORCE_INLINE	void	deSerializeDouble(const struct	Vector3DoubleData& dataIn);
-
+#ifdef _WIN32
+} __declspec(align(16));
+#else
 } __attribute__ ((aligned(16)));
+#endif
 
 /**@brief Return the sum of two vectors (Point symantics)*/
 TFSIMD_FORCE_INLINE Vector3 

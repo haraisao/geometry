@@ -44,6 +44,7 @@
 
 #include <tf2_ros/transform_listener.h>
 
+#include "exportdecl.h"
 
 namespace tf{
 
@@ -63,10 +64,14 @@ inline std::string getPrefixParam(ros::NodeHandle & nh) {
 
 /** \brief resolve names 
  * \deprecated Use TransformListener::remap  instead */
+#ifdef WIN32
+[[deprecated]] std::string remap(const std::string& frame_id);
+#else
 std::string remap(const std::string& frame_id) __attribute__((deprecated));
+#endif
 
 /** \brief This class inherits from Transformer and automatically subscribes to ROS transform messages */
-class TransformListener : public Transformer { //subscribes to message and automatically stores incoming data
+class TF_DECL TransformListener : public Transformer { //subscribes to message and automatically stores incoming data
 
 public:
   /**@brief Constructor for transform listener

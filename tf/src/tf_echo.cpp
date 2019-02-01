@@ -31,6 +31,10 @@
 #include "tf/transform_listener.h"
 #include "ros/ros.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979
+#endif
+
 #define _USE_MATH_DEFINES
 class echoListener
 {

@@ -130,6 +130,12 @@ install(TARGETS ${PROJECT_NAME} tf_echo tf_empty_listener tf_change_notifier tf_
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+if(WIN32)
+install(TARGETS ${PROJECT_NAME}
+        RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+        CONFIGURATIONS Release
+)
+endif()
 # Install rosrun-able scripts
 install(PROGRAMS
   scripts/bullet_migration_sed.py

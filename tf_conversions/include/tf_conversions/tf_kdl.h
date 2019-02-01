@@ -37,69 +37,106 @@
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Twist.h>
 
+#include "exportdecl.h"
+
 namespace tf
 {
 
 /// Converts a tf Pose into a KDL Frame
-void poseTFToKDL(const tf::Pose &t, KDL::Frame &k);
+TF_CONVERSIONS_DECL void poseTFToKDL(const tf::Pose &t, KDL::Frame &k);
 
 /// Converts a KDL Frame into a tf Pose
-void poseKDLToTF(const KDL::Frame &k, tf::Pose &t);
+TF_CONVERSIONS_DECL void poseKDLToTF(const KDL::Frame &k, tf::Pose &t);
 
 /// Converts a tf Quaternion into a KDL Rotation
-void quaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k);
+TF_CONVERSIONS_DECL void quaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k);
 
 /// Converts a tf Quaternion into a KDL Rotation
-void quaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t);
+TF_CONVERSIONS_DECL void quaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t);
 
 /// Converts a tf Transform into a KDL Frame
-void transformTFToKDL(const tf::Transform &t, KDL::Frame &k);
+TF_CONVERSIONS_DECL void transformTFToKDL(const tf::Transform &t, KDL::Frame &k);
 
 /// Converts a KDL Frame into a tf Transform
-void transformKDLToTF(const KDL::Frame &k, tf::Transform &t);
+TF_CONVERSIONS_DECL void transformKDLToTF(const KDL::Frame &k, tf::Transform &t);
 
 /// Converts a tf Vector3 into a KDL Vector
-void vectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k);
+TF_CONVERSIONS_DECL void vectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k);
 
 /// Converts a tf Vector3 into a KDL Vector
-void vectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t);
+TF_CONVERSIONS_DECL void vectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t);
 
 /* DEPRECATED FUNCTIONS */
 /// Starting from a Pose from A to B, apply a Twist with reference frame A and reference point B, during a time t.
-geometry_msgs::Pose addDelta(const geometry_msgs::Pose &pose, const geometry_msgs::Twist &twist, const double &t)  __attribute__((deprecated));
-
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] geometry_msgs::Pose addDelta(const geometry_msgs::Pose &pose, const geometry_msgs::Twist &twist, const double &t);
+#else
+TF_CONVERSIONS_DECL geometry_msgs::Pose addDelta(const geometry_msgs::Pose &pose, const geometry_msgs::Twist &twist, const double &t)  __attribute__((deprecated));
+#endif
 
 /// Converts a tf Pose into a KDL Frame
-void PoseTFToKDL(const tf::Pose &t, KDL::Frame &k) __attribute__((deprecated));
-void inline PoseTFToKDL(const tf::Pose &t, KDL::Frame &k) {poseTFToKDL(t, k);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecate]] void PoseTFToKDL(const tf::Pose &t, KDL::Frame &k);
+#else
+TF_CONVERSIONS_DECL void PoseTFToKDL(const tf::Pose &t, KDL::Frame &k) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline PoseTFToKDL(const tf::Pose &t, KDL::Frame &k) {poseTFToKDL(t, k);};
 
 /// Converts a KDL Frame into a tf Pose
-void PoseKDLToTF(const KDL::Frame &k, tf::Pose &t) __attribute__((deprecated));
-void inline PoseKDLToTF(const KDL::Frame &k, tf::Pose &t) {poseKDLToTF(k, t);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void PoseKDLToTF(const KDL::Frame &k, tf::Pose &t);
+#else
+TF_CONVERSIONS_DECL void PoseKDLToTF(const KDL::Frame &k, tf::Pose &t) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline PoseKDLToTF(const KDL::Frame &k, tf::Pose &t) {poseKDLToTF(k, t);};
 
 /// Converts a tf Quaternion into a KDL Rotation
-void QuaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k) __attribute__((deprecated));
-void inline QuaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k) {quaternionTFToKDL(t, k);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void QuaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k);
+#else
+TF_CONVERSIONS_DECL void QuaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline QuaternionTFToKDL(const tf::Quaternion &t, KDL::Rotation &k) {quaternionTFToKDL(t, k);};
 
 /// Converts a tf Quaternion into a KDL Rotation
-void QuaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t) __attribute__((deprecated));
-void inline QuaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t) {quaternionKDLToTF(k, t);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void QuaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t);
+#else
+TF_CONVERSIONS_DECL void QuaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline QuaternionKDLToTF(const KDL::Rotation &k, tf::Quaternion &t) {quaternionKDLToTF(k, t);};
 
 /// Converts a tf Transform into a KDL Frame
-void TransformTFToKDL(const tf::Transform &t, KDL::Frame &k) __attribute__((deprecated));
-void inline TransformTFToKDL(const tf::Transform &t, KDL::Frame &k) {transformTFToKDL(t, k);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void TransformTFToKDL(const tf::Transform &t, KDL::Frame &k);
+#else
+TF_CONVERSIONS_DECL void TransformTFToKDL(const tf::Transform &t, KDL::Frame &k) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline TransformTFToKDL(const tf::Transform &t, KDL::Frame &k) {transformTFToKDL(t, k);};
 
 /// Converts a KDL Frame into a tf Transform
-void TransformKDLToTF(const KDL::Frame &k, tf::Transform &t) __attribute__((deprecated));
-void inline TransformKDLToTF(const KDL::Frame &k, tf::Transform &t)  {transformKDLToTF(k, t);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void TransformKDLToTF(const KDL::Frame &k, tf::Transform &t);
+#else
+TF_CONVERSIONS_DECL void TransformKDLToTF(const KDL::Frame &k, tf::Transform &t) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline TransformKDLToTF(const KDL::Frame &k, tf::Transform &t)  {transformKDLToTF(k, t);};
 
 /// Converts a tf Vector3 into a KDL Vector
-void VectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k) __attribute__((deprecated));
-void inline VectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k) {vectorTFToKDL(t, k);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void VectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k);
+#else
+TF_CONVERSIONS_DECL void VectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline VectorTFToKDL(const tf::Vector3 &t, KDL::Vector &k) {vectorTFToKDL(t, k);};
 
 /// Converts a tf Vector3 into a KDL Vector
-void VectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t) __attribute__((deprecated));
-void inline VectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t) {vectorKDLToTF(k, t);};
+#ifdef WIN32
+TF_CONVERSIONS_DECL [[deprecated]] void VectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t);
+#else
+TF_CONVERSIONS_DECL void VectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t) __attribute__((deprecated));
+#endif
+TF_CONVERSIONS_DECL void inline VectorKDLToTF(const KDL::Vector &k, tf::Vector3 &t) {vectorKDLToTF(k, t);};
 
 
 } // namespace tf

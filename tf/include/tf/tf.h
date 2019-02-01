@@ -48,17 +48,26 @@
 
 #include <tf2_ros/buffer.h>
 
+#include "exportdecl.h"
+
 namespace tf
 {
 /** \brief resolve tf names */
-std::string resolve(const std::string& prefix, const std::string& frame_name);
+TF_DECL std::string resolve(const std::string& prefix, const std::string& frame_name);
 
 /** strip a leading slash for */
 std::string strip_leading_slash(const std::string& frame_name);
 
 /** \deprecated This has been renamed to tf::resolve */
+#ifdef WIN32
+[[deprecated]] static inline std::string remap(const std::string& prefix, const std::string& frame_name) { return tf::resolve(prefix, frame_name);} ;
+#else
 __attribute__((deprecated)) static inline std::string remap(const std::string& prefix, const std::string& frame_name) { return tf::resolve(prefix, frame_name);} ;
+#endif
 
+#ifdef WIN32
+#undef NO_ERROR
+#endif
 enum ErrorValues { NO_ERROR = 0, LOOKUP_ERROR, CONNECTIVITY_ERROR, EXTRAPOLATION_ERROR};
 
 /** \brief An internal representation of transform chains
@@ -88,7 +97,7 @@ typedef struct
  *
  * All function calls which pass frame ids can potentially throw the exception tf::LookupException
  */
-class Transformer
+class TF_DECL Transformer
 {
 public:
   /************* Constants ***********************/

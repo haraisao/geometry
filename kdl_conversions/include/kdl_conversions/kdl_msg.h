@@ -41,68 +41,78 @@
 #include <geometry_msgs/Vector3.h>
 #include <geometry_msgs/Wrench.h>
 
+#include "exportdecl.h"
 
 namespace tf {
 /// Conversion functions from/to the corresponding KDL and geometry_msgs types.
 
 /// Converts a geometry_msgs Point into a KDL Vector
-void pointMsgToKDL(const geometry_msgs::Point &m, KDL::Vector &k);
+KDL_CONVERSIONS_DECL void pointMsgToKDL(const geometry_msgs::Point &m, KDL::Vector &k);
 
 /// Converts a KDL Vector into a geometry_msgs Vector3
-void pointKDLToMsg(const KDL::Vector &k, geometry_msgs::Point &m);
+KDL_CONVERSIONS_DECL void pointKDLToMsg(const KDL::Vector &k, geometry_msgs::Point &m);
 
 /// Converts a Pose message into a KDL Frame
-void poseMsgToKDL(const geometry_msgs::Pose &m, KDL::Frame &k);
+KDL_CONVERSIONS_DECL void poseMsgToKDL(const geometry_msgs::Pose &m, KDL::Frame &k);
 
 /// Converts a KDL Frame into a Pose message 
-void poseKDLToMsg(const KDL::Frame &k, geometry_msgs::Pose &m);
+KDL_CONVERSIONS_DECL void poseKDLToMsg(const KDL::Frame &k, geometry_msgs::Pose &m);
 
 /// Converts a quaternion message into a KDL Rotation
-void quaternionMsgToKDL(const geometry_msgs::Quaternion &m, KDL::Rotation &k);
+KDL_CONVERSIONS_DECL void quaternionMsgToKDL(const geometry_msgs::Quaternion &m, KDL::Rotation &k);
 
 /// Converts a KDL Rotation into a message quaternion
-void quaternionKDLToMsg(const KDL::Rotation &k, geometry_msgs::Quaternion &m);
+KDL_CONVERSIONS_DECL void quaternionKDLToMsg(const KDL::Rotation &k, geometry_msgs::Quaternion &m);
 
 /// Converts a Transform message into a KDL Frame
-void transformMsgToKDL(const geometry_msgs::Transform &m, KDL::Frame &k);
+KDL_CONVERSIONS_DECL void transformMsgToKDL(const geometry_msgs::Transform &m, KDL::Frame &k);
 
 /// Converts a KDL Frame into a Transform message 
-void transformKDLToMsg(const KDL::Frame &k, geometry_msgs::Transform &m);
+KDL_CONVERSIONS_DECL void transformKDLToMsg(const KDL::Frame &k, geometry_msgs::Transform &m);
 
 /// Converts a Twist message into a KDL Twist
-void twistMsgToKDL(const geometry_msgs::Twist &m, KDL::Twist &k);
+KDL_CONVERSIONS_DECL void twistMsgToKDL(const geometry_msgs::Twist &m, KDL::Twist &k);
 
 /// Converts a KDL Twist into a Twist message
-void twistKDLToMsg(const KDL::Twist &k, geometry_msgs::Twist &m);
+KDL_CONVERSIONS_DECL void twistKDLToMsg(const KDL::Twist &k, geometry_msgs::Twist &m);
 
 /// Converts a Vector3 message into a KDL Vector
-void vectorMsgToKDL(const geometry_msgs::Vector3 &m, KDL::Vector &k);
+KDL_CONVERSIONS_DECL void vectorMsgToKDL(const geometry_msgs::Vector3 &m, KDL::Vector &k);
 
 /// Converts a KDL Vector into a Vector3 message
-void vectorKDLToMsg(const KDL::Vector &k, geometry_msgs::Vector3 &m);
+KDL_CONVERSIONS_DECL void vectorKDLToMsg(const KDL::Vector &k, geometry_msgs::Vector3 &m);
 
 /// Converts a Wrench message into a KDL Wrench
-void wrenchMsgToKDL(const geometry_msgs::Wrench &m, KDL::Wrench &k);
+KDL_CONVERSIONS_DECL void wrenchMsgToKDL(const geometry_msgs::Wrench &m, KDL::Wrench &k);
 
 /// Converts a KDL Wrench into a Wrench message
-void wrenchKDLToMsg(const KDL::Wrench &k, geometry_msgs::Wrench &m);
-
+KDL_CONVERSIONS_DECL void wrenchKDLToMsg(const KDL::Wrench &k, geometry_msgs::Wrench &m);
 
 //Deprecated methods use above:
 /// Converts a Pose message into a KDL Frame
+#ifdef WIN32
+KDL_CONVERSIONS_DECL [[deprecated]] void PoseMsgToKDL(const geometry_msgs::Pose &m, KDL::Frame &k);
+
+/// Converts a KDL Frame into a Pose message 
+KDL_CONVERSIONS_DECL [[deprecated]] void PoseKDLToMsg(const KDL::Frame &k, geometry_msgs::Pose &m);
+
+/// Converts a Twist message into a KDL Twist
+KDL_CONVERSIONS_DECL [[deprecated]] void TwistMsgToKDL(const geometry_msgs::Twist &m, KDL::Twist &k);
+
+/// Converts a KDL Twist into a Twist message
+KDL_CONVERSIONS_DECL [[deprecated]] void TwistKDLToMsg(const KDL::Twist &k, geometry_msgs::Twist &m);
+#else
 void PoseMsgToKDL(const geometry_msgs::Pose &m, KDL::Frame &k)__attribute__((deprecated));
 
 /// Converts a KDL Frame into a Pose message 
 void PoseKDLToMsg(const KDL::Frame &k, geometry_msgs::Pose &m) __attribute__((deprecated));
-
-
 
 /// Converts a Twist message into a KDL Twist
 void TwistMsgToKDL(const geometry_msgs::Twist &m, KDL::Twist &k) __attribute__((deprecated));
 
 /// Converts a KDL Twist into a Twist message
 void TwistKDLToMsg(const KDL::Twist &k, geometry_msgs::Twist &m) __attribute__((deprecated));
-
+#endif
 
 
 }

@@ -37,7 +37,7 @@
 #include "tf/tfMessage.h"
 
 #include <tf2_ros/transform_broadcaster.h>
-
+#include "exportdecl.h"
 
 namespace tf
 {
@@ -47,7 +47,7 @@ namespace tf
  * It will handle all the messaging and stuffing of messages.  And the function prototypes lay out all the 
  * necessary data needed for each message.  */
 
-class TransformBroadcaster{
+class TF_DECL TransformBroadcaster{
 public:
   /** \brief Constructor (needs a ros::Node reference) */
   TransformBroadcaster();
