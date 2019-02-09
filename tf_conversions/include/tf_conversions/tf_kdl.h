@@ -76,7 +76,7 @@ TF_CONVERSIONS_DECL geometry_msgs::Pose addDelta(const geometry_msgs::Pose &pose
 
 /// Converts a tf Pose into a KDL Frame
 #ifdef WIN32
-TF_CONVERSIONS_DECL [[deprecate]] void PoseTFToKDL(const tf::Pose &t, KDL::Frame &k);
+TF_CONVERSIONS_DECL [[deprecated]] void PoseTFToKDL(const tf::Pose &t, KDL::Frame &k);
 #else
 TF_CONVERSIONS_DECL void PoseTFToKDL(const tf::Pose &t, KDL::Frame &k) __attribute__((deprecated));
 #endif
