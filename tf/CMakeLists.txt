@@ -133,7 +133,7 @@ install(TARGETS ${PROJECT_NAME} tf_echo tf_empty_listener tf_change_notifier tf_
 if(WIN32)
 install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-        CONFIGURATIONS Release
+        CONFIGURATIONS ${CMAKE_BUILD_TYPE}
 )
 endif()
 # Install rosrun-able scripts
