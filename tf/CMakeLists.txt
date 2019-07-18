@@ -131,7 +131,7 @@ install(TARGETS ${PROJECT_NAME} tf_echo tf_empty_listener tf_change_notifier tf_
 )
 
 if(WIN32)
-install(TARGETS ${PROJECT_NAME}
+    install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
         CONFIGURATIONS ${CMAKE_BUILD_TYPE}
 )
@@ -143,3 +143,7 @@ install(PROGRAMS
   scripts/view_frames
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} )
 
+if(WIN32)
+  install_python_cli(tf_remap)
+  install_python_cli(view_frames)
+endif()
